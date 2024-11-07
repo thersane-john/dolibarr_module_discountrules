@@ -287,8 +287,9 @@ if (empty($reshook))
 
 	$permissiontoread = $user->hasRight($rightskey,'lire');
 	$permissiontodelete = $user->hasRight($rightskey,'supprimer');
+	$permissiontoadd = $user->hasRight($rightskey, 'creer');
 	$uploaddir = $conf->product->dir_output;
-//	include DOL_DOCUMENT_ROOT.'/core/actions_massactions.inc.php';
+	include DOL_DOCUMENT_ROOT.'/core/actions_massactions.inc.php';
 }
 
 
@@ -547,6 +548,11 @@ if ($resql)
 	print_barre_liste($texte, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, $massactionbutton, $num, $nbtotalofrecords, $picto, 0, $newcardbutton, '', $limit, 0, 0, 1);
 
 
+$topicmail = "Information";
+$modelmail = "product";
+$objecttmp = new Product($db);
+$trackid = 'prod'.$object->id;
+include DOL_DOCUMENT_ROOT.'/core/tpl/massactions_pre.tpl.php';
 
 //	if (!empty($catid))
 //	{
